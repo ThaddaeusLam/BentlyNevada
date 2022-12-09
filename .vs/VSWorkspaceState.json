@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Global Management UI"
+    "\\Global Management UI",
+    "\\Global Management UI\\Controllers"
   ],
-  "SelectedNode": "\\Global Management UI\\Global Management UI.csproj",
+  "SelectedNode": "\\Global Management UI\\Controllers",
   "PreviewInSolutionExplorer": false
 }

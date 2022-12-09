@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Device_UI.Models;
+
 
 namespace Global_Management_UI.Data
 {
@@ -12,5 +14,7 @@ namespace Global_Management_UI.Data
             : base(options)
         {
         }
+        public DbSet<Device_UI.Models.Device> Device { get; set; }
+        
     }
 }
