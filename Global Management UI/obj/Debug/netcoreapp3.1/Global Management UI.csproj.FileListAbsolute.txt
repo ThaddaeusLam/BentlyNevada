@@ -708,3 +708,4 @@ C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\D
 C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.dll
 C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.pdb
 C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.genruntimeconfig.cache
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Home\deviceAccess.cshtml.g.cs

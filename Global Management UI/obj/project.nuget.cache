@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fEn365x4+SQQ1xcEOBPI5Lxfi7lYa5vUf8lhnyaxR9F5bEJPXaRcmHzyYD5uUWzNgGvZqGld07IROkhXDxab3w==",
+  "dgSpecHash": "8odXCyD5mNtx7eOa1pMgLBmqApCAI/al2kqLULQxDkUFy2lTHZdZnYCSTG3jKXNN+EpS5AiIdHkBWsOcHgSluQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\natha\\OneDrive\\Documents\\GitHub\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
   "expectedPackageFiles": [
@@ -171,8 +171,7 @@
     "C:\\Users\\natha\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\natha\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\natha\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\natha\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\natha\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.31\\microsoft.netcore.app.host.win-x64.3.1.31.nupkg.sha512"
+    "C:\\Users\\natha\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
