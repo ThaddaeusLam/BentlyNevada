@@ -19,7 +19,7 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        /* private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
@@ -109,8 +109,9 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
-        } */
+        } 
 
+        /*
         public IActionResult OnGet()
         {
             return RedirectToPage("Login");
@@ -120,5 +121,6 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
         {
             return RedirectToPage("Login");
         }
+        */
     }
 }
