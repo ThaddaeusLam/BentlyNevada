@@ -1,3 +1,5 @@
+//This code was modified by Caleb
+
 using Global_Management_UI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
