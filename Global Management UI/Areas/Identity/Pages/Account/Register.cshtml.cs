@@ -1,4 +1,6 @@
-﻿using System;
+//This code was modified by Caleb Stickler
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
