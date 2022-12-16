@@ -1,5 +1,5 @@
 using System;
-
+//Code created by Nathaniel McFadden
 namespace Device_UI.Models
 {
     public class Device

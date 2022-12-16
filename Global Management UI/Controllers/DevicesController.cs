@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Device_UI.Models;
 using Global_Management_UI.Data;
 
+//Code created by Nathaniel McFadden
 namespace Global_Management_UI.Controllers
 {
     public class DevicesController : Controller
