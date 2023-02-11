@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/V2heeWCsPaKGQqe2hqLinCZXtM4bcd15c5UG6GJWLlUtQvz/AQZxKrlsI3AI8mQukVMBgUkVvz4MqsOaIWybw==",
+  "dgSpecHash": "JM2UolG1U7NOArd9xwvOxOeDkqNoDjktN7vNbgxfNLfTYCg36hOqab/xHJjBX/WNC0uKVUbKUWgGN7rwSAkfjg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\clash\\Source\\Repos\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
+  "projectFilePath": "C:\\Users\\clash\\source\\repos\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\clash\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.30\\microsoft.aspnetcore.cryptography.internal.3.1.30.nupkg.sha512",
     "C:\\Users\\clash\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.30\\microsoft.aspnetcore.cryptography.keyderivation.3.1.30.nupkg.sha512",
