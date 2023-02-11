@@ -16,8 +16,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Global_Management_UI.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
-    //[Authorize(Roles ="Admin")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -104,7 +102,8 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        //return LocalRedirect(returnUrl);
+                        return RedirectToAction("Index", "Devices");
                     }
                 }
                 foreach (var error in result.Errors)
