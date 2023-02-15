@@ -8846,11 +8846,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\clash\\Source\\Repos\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
+      "projectUniqueName": "C:\\Users\\clash\\source\\repos\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
       "projectName": "Global Management UI",
-      "projectPath": "C:\\Users\\clash\\Source\\Repos\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
+      "projectPath": "C:\\Users\\clash\\source\\repos\\BentlyNevada\\Global Management UI\\Global Management UI.csproj",
       "packagesPath": "C:\\Users\\clash\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\clash\\Source\\Repos\\BentlyNevada\\Global Management UI\\obj\\",
+      "outputPath": "C:\\Users\\clash\\source\\repos\\BentlyNevada\\Global Management UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8928,7 +8928,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
       }
     }
   }
