@@ -10,8 +10,11 @@
         </li>
         @if (User.IsInRole("Admin"))
         {
-        <li class="nav-item">
+        @*<li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register New User</a>
+        </li>*@
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="ManageUsers">Manage Users</a>
         </li>
         }
         <li class="nav-item">
@@ -22,9 +25,7 @@
     }
     else
     {
-        @*<li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-            </li>*@
+
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>

@@ -51,12 +51,28 @@ namespace Global_Management_UI.Data.Migrations
                 {
                     table.PrimaryKey("PK_Device", x => x.ID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ManageUser",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(nullable: false),
+                    Role = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ManageUser", x => x.ID);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Device");
+
+            migrationBuilder.DropTable(name: "ManageUser");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
