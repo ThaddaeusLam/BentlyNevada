@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Device_UI.Models;
+using Global_Management_UI.Models;
 
 
 namespace Global_Management_UI.Data
@@ -15,6 +16,7 @@ namespace Global_Management_UI.Data
         {
         }
         public DbSet<Device_UI.Models.Device> Device { get; set; }
+        public DbSet<Global_Management_UI.Models.ManageUser> ManageUser { get; set; }
         
     }
 }

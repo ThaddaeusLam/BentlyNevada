@@ -720,3 +720,7 @@ C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\obj\Debug\netcorea
 C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.pdb
 C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.genruntimeconfig.cache
 C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.csproj.AssemblyReference.cache
+C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Delete.cshtml.g.cs
+C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Edit.cshtml.g.cs
+C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Index.cshtml.g.cs
+C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Error.cshtml.g.cs
