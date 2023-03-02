@@ -506,11 +506,6 @@ C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\D
 C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.pdb
 C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Global Management UI.genruntimeconfig.cache
 C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Home\deviceAccess.cshtml.g.cs
-C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Create.cshtml.g.cs
-C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Delete.cshtml.g.cs
-C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Details.cshtml.g.cs
-C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Edit.cshtml.g.cs
-C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Index.cshtml.g.cs
 C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\clash\Source\Repos\BentlyNevada\Global Management UI\bin\Debug\netcoreapp3.1\Global Management UI.StaticWebAssets.xml
@@ -724,3 +719,12 @@ C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcorea
 C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Edit.cshtml.g.cs
 C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Index.cshtml.g.cs
 C:\Users\clash\source\repos\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Error.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Delete.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Edit.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Error.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\ManageUsers\Index.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Create.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Delete.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Details.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Edit.cshtml.g.cs
+C:\Users\natha\OneDrive\Documents\GitHub\BentlyNevada\Global Management UI\obj\Debug\netcoreapp3.1\Razor\Views\Devices\Index.cshtml.g.cs

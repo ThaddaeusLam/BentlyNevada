@@ -22,11 +22,17 @@ namespace Global_Management_UI.Data.Migrations
             modelBuilder.Entity("Device_UI.Models.Device", b =>
                 {
                     b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                                         .ValueGeneratedOnAdd()
+                                         .HasColumnType("int")
+                                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Beginning")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("End")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Signature")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")

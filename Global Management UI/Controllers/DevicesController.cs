@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Device_UI.Models;
 using Global_Management_UI.Data;
 
-//Code created by Nathaniel McFadden
 namespace Global_Management_UI.Controllers
 {
-    [Authorize]
     public class DevicesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +22,10 @@ namespace Global_Management_UI.Controllers
         // GET: Devices
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Device.ToListAsync());
+            var devices = from s in _context.Device
+                           select s;
+            devices = devices.OrderBy(s => s.Status);
+            return View(await devices.AsNoTracking().ToListAsync());
         }
 
         // GET: Devices/Details/5
@@ -57,7 +57,7 @@ namespace Global_Management_UI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Location,Status")] Device device)
+        public async Task<IActionResult> Create([Bind("ID,Signature,Beginning,End,Status")] Device device)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Global_Management_UI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Location,Status")] Device device)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Signature,Beginning,End,Status")] Device device)
         {
             if (id != device.ID)
             {

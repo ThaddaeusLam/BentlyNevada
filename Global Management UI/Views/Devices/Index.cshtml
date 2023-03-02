@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Device Certificates</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,7 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Location)
+                @Html.DisplayNameFor(model => model.Signature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Beginning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -25,7 +31,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Location)
+                @Html.DisplayFor(modelItem => item.Signature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beginning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
@@ -39,4 +51,3 @@
 }
     </tbody>
 </table>
-@* Code Created by Nathaniel McFadden *@
