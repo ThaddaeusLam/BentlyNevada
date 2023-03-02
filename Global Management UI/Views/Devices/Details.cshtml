@@ -11,22 +11,10 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Signiture)
+            @Html.DisplayNameFor(model => model.Location)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Signiture)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Beginning)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Beginning)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.End)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.End)
+            @Html.DisplayFor(model => model.Location)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Status)
@@ -34,15 +22,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Creator)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Creator)
-        </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+@* Code Created by Nathaniel McFadden *@

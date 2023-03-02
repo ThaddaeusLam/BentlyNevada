@@ -13,29 +13,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Signiture" class="control-label"></label>
-                <input asp-for="Signiture" class="form-control" />
-                <span asp-validation-for="Signiture" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Beginning" class="control-label"></label>
-                <input asp-for="Beginning" class="form-control" />
-                <span asp-validation-for="Beginning" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="End" class="control-label"></label>
-                <input asp-for="End" class="form-control" />
-                <span asp-validation-for="End" class="text-danger"></span>
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Creator" class="control-label"></label>
-                <input asp-for="Creator" class="form-control" />
-                <span asp-validation-for="Creator" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -51,3 +36,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+@* Code Created by Nathaniel McFadden *@
