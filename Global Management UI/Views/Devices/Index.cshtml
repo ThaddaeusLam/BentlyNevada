@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Device_UI.Models.Device>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Devices";
 }
 
 <h1>Index</h1>
@@ -9,6 +9,17 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+    <p>
+        Find by Signiture: <input type="text" name="SearchString" value="@ViewData" />
+        <input type="submit" value="Search" class="btn btn-default" /> |
+        <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>

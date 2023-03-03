@@ -20,10 +20,15 @@ namespace Global_Management_UI.Controllers
         }
 
         // GET: Devices
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var devices = from s in _context.Device
-                           select s;
+                          select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                devices = devices.Where(s => s.Signature.Contains(searchString));
+            }
+
             devices = devices.OrderBy(s => s.Status);
             return View(await devices.AsNoTracking().ToListAsync());
         }
@@ -52,9 +57,7 @@ namespace Global_Management_UI.Controllers
             return View();
         }
 
-        // POST: Devices/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+ 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Signature,Beginning,End,Status")] Device device)
