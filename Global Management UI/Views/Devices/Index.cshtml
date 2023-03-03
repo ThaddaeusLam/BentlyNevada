@@ -1,39 +1,36 @@
-﻿@model IEnumerable<Device_UI.Models.Device>
-
+﻿@model Paging<Device_UI.Models.Device>
 @{
     ViewData["Title"] = "Devices";
 }
 
-<h1>Index</h1>
+<h1>Devices</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
+@using (Html.BeginForm())
+{
     <p>
-        Find by Signiture: <input type="text" name="SearchString" value="@ViewData" />
-        <input type="submit" value="Search" class="btn btn-default" /> |
-        <a asp-action="Index">Back to Full List</a>
-        </p>
-    </div>
-</form>
+        Find by Signiture: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Signature)
+                Signature
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Beginning)
+                Beginning
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.End)
+                End
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Status
             </th>
             <th></th>
         </tr>
@@ -62,3 +59,22 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary bg-green @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary bg-green @nextDisabled">
+    Next
+</a>

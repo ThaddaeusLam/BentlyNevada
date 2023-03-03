@@ -20,8 +20,13 @@ namespace Global_Management_UI.Controllers
         }
 
         // GET: Devices
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, int? pageNumber)
         {
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+
             var devices = from s in _context.Device
                           select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -30,7 +35,8 @@ namespace Global_Management_UI.Controllers
             }
 
             devices = devices.OrderBy(s => s.Status);
-            return View(await devices.AsNoTracking().ToListAsync());
+            int pageSize = 10;
+            return View(await Paging<Device>.CreateAsync(devices.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Devices/Details/5
