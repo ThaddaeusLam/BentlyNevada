@@ -26,6 +26,27 @@ namespace Global_Management_UI.Controllers
         // GET: Devices
         public async Task<IActionResult> Index(string searchString, int? pageNumber)
         {
+
+            //update status for each device in the database
+            var deviceDateChecker = await _context.Device.ToListAsync();
+             for (int i = 0; i < deviceDateChecker.Count; i++)
+            {
+                string deviceDate = deviceDateChecker[i].End;
+                var parsedDate = DateTime.Parse(deviceDateChecker[i].End.ToString());
+                DateTime today = DateTime.Today;
+                double finalTime = (parsedDate - today).TotalDays;
+
+                if(finalTime <= 0)
+                {
+                    deviceDateChecker[i].Status = "Bad";
+                    
+                }
+                else if(finalTime >= 0)
+                    deviceDateChecker[i].Status = "Good";
+            }
+            await _context.SaveChangesAsync();
+
+
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -37,6 +58,8 @@ namespace Global_Management_UI.Controllers
             {
                 devices = devices.Where(s => s.Signature.Contains(searchString));
             }
+
+
 
             devices = devices.OrderBy(s => s.Status);
             int pageSize = 10;
