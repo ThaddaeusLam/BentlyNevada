@@ -3,9 +3,9 @@
     "",
     "\\Controllers",
     "\\Data",
-    "\\Data\\Migrations",
-    "\\Models"
+    "\\Views",
+    "\\Views\\Devices"
   ],
-  "SelectedNode": "\\Controllers\\HomeController.cs",
+  "SelectedNode": "\\Global Management UI.sln",
   "PreviewInSolutionExplorer": false
 }

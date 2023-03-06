@@ -26,7 +26,7 @@ namespace Global_Management_UI.Controllers
         // GET: Devices
         public async Task<IActionResult> Index(string searchString, int? pageNumber)
         {
-
+            //<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             //update status for each device in the database
             var deviceDateChecker = await _context.Device.ToListAsync();
              for (int i = 0; i < deviceDateChecker.Count; i++)
@@ -136,6 +136,8 @@ namespace Global_Management_UI.Controllers
             {
                 try
                 {
+                    device.Signature = device.Signature;
+                    device.Beginning = device.Beginning;
                     _context.Update(device);
                     await _context.SaveChangesAsync();
                 }
@@ -205,7 +207,10 @@ namespace Global_Management_UI.Controllers
                 file.WriteLine("Device: " + device.Signature.ToString() + ".");
                 file.WriteLine("Certificate good after  " + device.Beginning.ToString() + ".");
                 file.WriteLine("Certificate good before " + device.End.ToString() + ".");
-                file.Write(finalTime.ToString() + " days until expiration");
+                if (finalTime > 0)
+                    file.Write(finalTime.ToString() + " days until expiration");
+                else
+                    file.Write("This Device's certificate has expired.");
                 file.Flush();
                 file.Close();
                 return File(stream.ToArray(), "text/plain", "Details_" + device.Signature.ToString() + ".txt");
