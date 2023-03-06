@@ -3,9 +3,10 @@
     "",
     "\\Controllers",
     "\\Data",
+    "\\Models",
     "\\Views",
     "\\Views\\Devices"
   ],
-  "SelectedNode": "\\Global Management UI.sln",
+  "SelectedNode": "\\Models\\Paging.cs",
   "PreviewInSolutionExplorer": false
 }
