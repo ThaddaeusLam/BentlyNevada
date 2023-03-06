@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Device_UI.Models;
 using Global_Management_UI.Data;
+using System.Text;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http;
 
 namespace Global_Management_UI.Controllers
 {
@@ -157,6 +161,33 @@ namespace Global_Management_UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost, ActionName("Generate")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GenerateReport(int id)
+        {
+            //get the device we are viewing
+            var device = await _context.Device.FindAsync(id);
+
+            //calculate the remianing duration on the device certificate
+            var parsedDate = DateTime.Parse(device.End.ToString());
+            DateTime today = DateTime.Today;
+            double finalTime = (parsedDate - today).TotalDays;
+
+            //allocate memory to create the download
+            using (MemoryStream stream = new MemoryStream())
+            {
+                using var file = new StreamWriter(stream);
+
+                //write data to file
+                file.WriteLine("Device: " + device.Signature.ToString() + ".");
+                file.WriteLine("Certificate good after  " + device.Beginning.ToString() + ".");
+                file.WriteLine("Certificate good before " + device.End.ToString() + ".");
+                file.Write(finalTime.ToString() + " days until expiration");
+                file.Flush();
+                file.Close();
+                return File(stream.ToArray(), "text/plain", "Details_" + device.Signature.ToString() + ".txt");
+            }
+        }
         private bool DeviceExists(int id)
         {
             return _context.Device.Any(e => e.ID == id);

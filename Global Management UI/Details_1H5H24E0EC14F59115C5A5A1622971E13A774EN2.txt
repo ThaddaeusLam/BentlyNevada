@@ -1,0 +1,4 @@
+Device: 1H5H24E0EC14F59115C5A5A1622971E13A774EN2.
+Certificate good after  1/30/2023.
+Certificate good before 1/27/2033.
+3615days until expiration

@@ -1,0 +1,4 @@
+Device: 1BQ2RE5T914F5914575M95A1622971E13A654E79.
+Certificate good after  1/29/2020.
+Certificate good before 1/29/2020.
+-1132days until expiration

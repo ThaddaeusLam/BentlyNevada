@@ -37,6 +37,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <form asp-action="Generate">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Generate Report" class="btn btn-outline-primary bg-green" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+    
 </div>
