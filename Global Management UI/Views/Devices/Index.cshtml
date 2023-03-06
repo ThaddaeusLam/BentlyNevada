@@ -1,15 +1,16 @@
-﻿@model Paging<Device_UI.Models.Device>
-@{
+﻿@* Code created by Nathaniel McFadden*@
+@model Paging<Device_UI.Models.Device>
+    @{
     ViewData["Title"] = "Devices";
-}
+    }
 
-<h1>Devices</h1>
+    <h1>Devices</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
 
-@using (Html.BeginForm())
+    @using (Html.BeginForm())
 {
     <p>
         Find by Signiture: @Html.TextBox("SearchString")
@@ -17,65 +18,65 @@
     </p>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Signature
-            </th>
-            <th>
-                Beginning
-            </th>
-            <th>
-                End
-            </th>
-            <th>
-                Status
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Signature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Beginning)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.End)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Renew</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">View Report</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                
-            </td>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Signature
+                </th>
+                <th>
+                    Beginning
+                </th>
+                <th>
+                    End
+                </th>
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Signature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beginning)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Renew</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">View Report</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+
+                </td>
+            </tr>
 }
-    </tbody>
-</table>
-@{
+        </tbody>
+    </table>
+    @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
+    }
 
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-outline-primary bg-green @prevDisabled">
-    Previous
-</a>
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-outline-primary bg-green @nextDisabled">
-    Next
-</a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-outline-primary bg-green @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-outline-primary bg-green @nextDisabled">
+        Next
+    </a>
