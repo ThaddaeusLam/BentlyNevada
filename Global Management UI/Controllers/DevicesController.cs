@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+//Code created by Nathaniel McFadden
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +9,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Device_UI.Models;
 using Global_Management_UI.Data;
+using System.Text;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http;
 
 namespace Global_Management_UI.Controllers
 {
@@ -22,6 +28,27 @@ namespace Global_Management_UI.Controllers
         // GET: Devices
         public async Task<IActionResult> Index(string searchString, int? pageNumber)
         {
+            //<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            //update status for each device in the database
+            var deviceDateChecker = await _context.Device.ToListAsync();
+             for (int i = 0; i < deviceDateChecker.Count; i++)
+            {
+                string deviceDate = deviceDateChecker[i].End;
+                var parsedDate = DateTime.Parse(deviceDateChecker[i].End.ToString());
+                DateTime today = DateTime.Today;
+                double finalTime = (parsedDate - today).TotalDays;
+
+                if(finalTime <= 0)
+                {
+                    deviceDateChecker[i].Status = "Bad";
+                    
+                }
+                else if(finalTime >= 0)
+                    deviceDateChecker[i].Status = "Good";
+            }
+            await _context.SaveChangesAsync();
+
+
             if (searchString != null)
             {
                 pageNumber = 1;
@@ -33,6 +60,8 @@ namespace Global_Management_UI.Controllers
             {
                 devices = devices.Where(s => s.Signature.Contains(searchString));
             }
+
+
 
             devices = devices.OrderBy(s => s.Status);
             int pageSize = 10;
@@ -109,6 +138,8 @@ namespace Global_Management_UI.Controllers
             {
                 try
                 {
+                    device.Signature = device.Signature;
+                    device.Beginning = device.Beginning;
                     _context.Update(device);
                     await _context.SaveChangesAsync();
                 }
@@ -157,6 +188,36 @@ namespace Global_Management_UI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost, ActionName("Generate")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GenerateReport(int id)
+        {
+            //get the device we are viewing
+            var device = await _context.Device.FindAsync(id);
+
+            //calculate the remianing duration on the device certificate
+            var parsedDate = DateTime.Parse(device.End.ToString());
+            DateTime today = DateTime.Today;
+            double finalTime = (parsedDate - today).TotalDays;
+
+            //allocate memory to create the download
+            using (MemoryStream stream = new MemoryStream())
+            {
+                using var file = new StreamWriter(stream);
+
+                //write data to file
+                file.WriteLine("Device: " + device.Signature.ToString() + ".");
+                file.WriteLine("Certificate good after  " + device.Beginning.ToString() + ".");
+                file.WriteLine("Certificate good before " + device.End.ToString() + ".");
+                if (finalTime > 0)
+                    file.Write(finalTime.ToString() + " days until expiration");
+                else
+                    file.Write("This Device's certificate has expired.");
+                file.Flush();
+                file.Close();
+                return File(stream.ToArray(), "text/plain", "Details_" + device.Signature.ToString() + ".txt");
+            }
+        }
         private bool DeviceExists(int id)
         {
             return _context.Device.Any(e => e.ID == id);

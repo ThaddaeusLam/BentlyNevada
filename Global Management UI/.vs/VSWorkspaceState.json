@@ -3,9 +3,10 @@
     "",
     "\\Controllers",
     "\\Data",
-    "\\Data\\Migrations",
-    "\\Models"
+    "\\Models",
+    "\\Views",
+    "\\Views\\Devices"
   ],
-  "SelectedNode": "\\Controllers\\HomeController.cs",
+  "SelectedNode": "\\Models\\Paging.cs",
   "PreviewInSolutionExplorer": false
 }
