@@ -1,4 +1,5 @@
-﻿using System;
+//This code was modified by Caleb Stickler
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace Global_Management_UI.Controllers
                     Role = a.d.Name
                 });
 
-            int j = 42; //primary key set to 1
+            int j = 1; //primary key set to 1
 
             foreach(var i in usersTable)
             {
