@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Global_Management_UI.Data;
 
 namespace Global_Management_UI.Areas.Identity.Pages.Account
 {
@@ -22,20 +23,21 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ApplicationDbContext _context;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
-
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -45,13 +47,9 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(25, ErrorMessage = "Username must be at least {2} and at max {1} characters long.", MinimumLength = 5)]
+            [StringLength(25, ErrorMessage = "Username must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [Display(Name = "Username")]
             public string Username { get; set; }
-
-            /*[Required]
-            [EmailAddress]
-            public string Email { get; set; }*/
 
             [Required]
             [DataType(DataType.Password)]
@@ -73,8 +71,6 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
             ReturnUrl = returnUrl;
         }
 
@@ -86,12 +82,30 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                //var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    //return LocalRedirect(returnUrl);
+
+                    //Record date of password change
+                    DateTime signinDate = DateTime.Now;
+                    var users = _context.ManageUser;
+
+                    int j = 0;
+                    foreach (var i in users)
+                    {
+                        if (i.Username == Input.Username)
+                        {
+                            j = i.Id;
+                            var userModified = _context.ManageUser.FirstOrDefault(u => u.Id == j);
+                            userModified.LastAccessed = signinDate;
+                            _context.ManageUser.Update(userModified);
+                            break;
+                        }
+                    }
+
+                    await _context.SaveChangesAsync();
+
                     return RedirectToAction("Index", "Devices");
                 }
                 if (result.RequiresTwoFactor)
