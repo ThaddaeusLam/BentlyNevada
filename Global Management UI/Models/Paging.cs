@@ -1,4 +1,4 @@
-﻿//Code by Nathaniel McFadden
+//Code by Nathaniel McFadden
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,6 +12,7 @@
             public int PageIndex { get; private set; }
             public int TotalPages { get; private set; }
 
+            public string sortingInfo { get; set; }
             public Paging(List<T> items, int count, int pageIndex, int pageSize)
             {
                 PageIndex = pageIndex;
@@ -32,5 +33,3 @@
             }
         }
     }
-
-
