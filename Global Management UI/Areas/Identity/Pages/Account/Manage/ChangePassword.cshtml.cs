@@ -1,4 +1,6 @@
-﻿using System;
+//Modified by Caleb Stickler
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Global_Management_UI.Data;
+
 namespace Global_Management_UI.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
@@ -14,15 +18,18 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
+        private readonly ApplicationDbContext _context;
 
         public ChangePasswordModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            ILogger<ChangePasswordModel> logger)
+            ILogger<ChangePasswordModel> logger,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
@@ -93,6 +100,24 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account.Manage
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
             StatusMessage = "Your password has been changed.";
+
+
+            //Record date of password change
+            DateTime pwdChange = DateTime.Today;
+            var users = _context.ManageUser;
+            
+            foreach (var i in users)
+            {
+                if (i.Username == user.UserName)
+                {
+                    var userModified = i;
+                    userModified.LastPasswordChange = pwdChange.ToShortDateString();
+                    _context.ManageUser.Update(userModified);
+                    break;
+                }
+            }
+
+            _context.SaveChanges();
 
             return RedirectToPage();
         }
