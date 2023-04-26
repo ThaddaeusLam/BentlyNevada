@@ -1,4 +1,6 @@
-﻿using System;
+//Scaffolded Code - Caleb Stickler
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
