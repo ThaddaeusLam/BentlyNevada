@@ -1,3 +1,5 @@
+//Scaffolded code - Caleb Stickler
+
 using System;
 
 namespace Global_Management_UI.Models
