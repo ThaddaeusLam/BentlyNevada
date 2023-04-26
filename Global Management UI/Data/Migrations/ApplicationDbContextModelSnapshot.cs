@@ -22,15 +22,21 @@ namespace Global_Management_UI.Data.Migrations
             modelBuilder.Entity("Device_UI.Models.Device", b =>
                 {
                     b.Property<int>("ID")
-                                         .ValueGeneratedOnAdd()
-                                         .HasColumnType("int")
-                                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Beginning")
+                    b.Property<DateTime>("Beginning")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IP")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("End")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Port")
+                        .HasColumnType("int");
 
                     b.Property<string>("Signature")
                         .HasColumnType("nvarchar(max)");
@@ -38,9 +44,39 @@ namespace Global_Management_UI.Data.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("creator")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastUpdatedID")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("Device");
+                });
+
+            modelBuilder.Entity("Device_UI.Models.DeviceHistory", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AlterationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeviceSignature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserWhoEdited")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("actionTaken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("DeviceHistory");
                 });
 
             modelBuilder.Entity("Global_Management_UI.Models.ManageUser", b =>
@@ -49,6 +85,15 @@ namespace Global_Management_UI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreationDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastAccessed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastPasswordChange")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
