@@ -1,43 +1,47 @@
-@*This code was modified by Caleb Stickler*@
 @model Global_Management_UI.Models.ManageUser
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit User";
 }
 
-<h1>Edit</h1>
+<h1>Edit User</h1>
 
 <h4>ManageUser</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div>
+    <div class="col-md-4 gray-div" style="height:500px">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
+                <label asp-for="Username" class="control-label light-gray-text"></label>
+                <br />
+                <input asp-for="Username" ReadOnly="true" class="control-label" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Update Role</label>
+                <label class="light-gray-text">Update Role</label>
                 <select asp-for="Role" class="form-control">
                     <option value="">--Select Role--</option>
                     <option value="Admin">Admin</option>
                     <option value="Display">Display</option>
                 </select>
             </div>
+            <input type="hidden" asp-for="LastAccessed" />
+            <input type="hidden" asp-for="CreationDate" />
+            <input type="hidden" asp-for="LastPasswordChange" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+        <form asp-action="Index" class="bottom">
+            <button class="btn btn-primary" alt="Back to Manage User List Button">Back to List</button>
+        </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+@* Code edited by Thaddaeus Lam *@
