@@ -1,5 +1,7 @@
-@*This code was modified by Caleb Stickler*@
-@model IEnumerable<Global_Management_UI.Models.ManageUser>
+@model Paging<Global_Management_UI.Models.ManageUser>
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -8,41 +10,95 @@
 <h1>List of Users</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a asp-action="Create">Register New User</a>*@
+    <form asp-action="Create">
+        <button class="btn btn-blue" alt="Register New User Button">Register New User</button>
+    </form>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Username)
+                @*@Html.DisplayNameFor(model => model.Username)*@
+                @Html.ActionLink("Username", "Index", new { sortOrder = "Username" })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Role)
+                @*@Html.DisplayNameFor(model => model.Role)*@
+                @Html.ActionLink("Role", "Index", new { sortOrder = "Role" })
             </th>
-            <th></th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LastAccessed)*@
+                @Html.ActionLink("Last Accessed", "Index", new { sortOrder = "Date" })
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.Username
-            </td>
-            <td>
-                @item.Role
-            </td>
-             @if (UserManager.GetUserName(User) != item.Username)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Username
+                </td>
+                <td>
+                    @item.Role
+                </td>
+                <td>
+                    @item.LastAccessed
+                </td>
+                @if (UserManager.GetUserName(User) != item.Username)
+                {
+                    @if (User.IsInRole("Sysadmin"))
                     {
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action = "Delete" asp-route-id="@item.Id">Delete</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                            <a asp-action="UserInfo" asp-route-id="@item.Id">Info</a>
                         </td>
                     }
-                    else
+                    else if (User.IsInRole("Admin"))
                     {
-                        <td></td>
+                        @if (item.Role == "Display")
+                        {
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                                <a asp-action="UserInfo" asp-route-id="@item.Id">Info</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-action="UserInfo" asp-route-id="@item.Id">Info</a>
+                            </td>
+                        }
                     }
-        </tr>
-}
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="UserInfo" asp-route-id="@item.Id">Info</a>
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-outline-primary bg-green @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-outline-primary bg-green @nextDisabled">
+    Next
+</a>
+Page @(Model.TotalPages < Model.PageIndex ? 0 : Model.PageIndex) of @Model.TotalPages
+
+@* Code edited by Thaddaeus Lam *@
