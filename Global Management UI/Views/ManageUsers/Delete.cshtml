@@ -1,34 +1,38 @@
-@*This code was modified by Caleb Stickler*@﻿
 @model Global_Management_UI.Models.ManageUser
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete User";
 }
 
-<h1>Delete</h1>
+<h1>Delete User</h1>
 
 <h3>Are you sure you want to remove this account?</h3>
-<div>
-    <h4>ManageUser</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+<hr />
+<div class="gray-div">
+    <dl class="info-row">
+        <dt class = "col-sm-2 light-gray-text">
             @Html.DisplayNameFor(model => model.Username)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10 white-text">
             @Html.DisplayFor(model => model.Username)
         </dd>
-        <dt class = "col-sm-2">
+    </dl>
+    <dl class="info-row">
+        <dt class="col-sm-2 light-gray-text">
             @Html.DisplayNameFor(model => model.Role)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10 white-text">
             @Html.DisplayFor(model => model.Role)
         </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-action="Delete" class="white-text">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+    <form asp-action="Index" style="padding-top:20px">
+        <button class="btn btn-primary" alt="Back to Manage User List Button">Back to List</button>
     </form>
 </div>
+
+@* Code edited by Thaddaeus Lam *@

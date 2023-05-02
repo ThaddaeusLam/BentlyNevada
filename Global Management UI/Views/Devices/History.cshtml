@@ -1,0 +1,98 @@
+@model Paging<Device_UI.Models.DeviceHistory>
+@{
+    ViewData["Title"] = "Device History";
+}
+
+<h1>Device History</h1>
+@*<a class="white-text" asp-controller="ManageUsers">Manage Users</a>*@
+<table class="indexHead" style="padding-right: 100px;">
+    <thead>
+        <tr class="info-row">
+            <th>
+                <a asp-action="index" class="btn btn-blue">Return to Devices </a>
+            </th>
+            <th>
+                <form asp-action="Generate History">
+                    <button type="submit" class="btn btn-blue vertical-align-text" style=" position: absolute; right: 15%;" alt="Generate Mass Report Button">Generate History Report</button>
+                </form>
+            </th>
+        </tr>
+
+    </thead>
+</table>
+
+@using (Html.BeginForm())
+{
+    <p style="padding-top: 15px">
+        Find by Device: @Html.TextBox("SearchString")
+        <form>
+            <button type="submit" class="btn btn-primary vertical-align-text" alt="Search Button">Search</button> |
+            <a asp-action="History" class="btn btn-blue">Back to Full List</a>
+        </form>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Device", "History", new { sortOrder = "Sig" , currentFilter = ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("Action", "History", new { sortOrder = "Action", currentFilter = ViewBag.CurrentFilter})
+                
+            </th>
+            <th>
+                @Html.ActionLink("Date", "History", new { sortOrder = "Time", currentFilter = ViewBag.CurrentFilter})
+                
+            </th>
+            <th>
+                @Html.ActionLink("User", "History", new { sortOrder = "User", currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceSignature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.actionTaken)
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AlterationDate)
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserWhoEdited)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="History"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary bg-green @prevDisabled">
+    Previous
+</a>
+<a asp-action="History"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary bg-green @nextDisabled">
+    Next
+</a>
+Page @(Model.TotalPages < Model.PageIndex ? 0 : Model.PageIndex) of @Model.TotalPages
+
+@* Code edited by Thaddaeus Lam *@

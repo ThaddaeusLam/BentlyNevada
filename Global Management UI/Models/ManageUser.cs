@@ -13,6 +13,9 @@ namespace Global_Management_UI.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Role { get; set; }
+        public DateTime LastAccessed { get; set; }
+        public string CreationDate { get; set; }
+        public string LastPasswordChange { get; set; }
 
         public ManageUser()
         {

@@ -1,4 +1,6 @@
-﻿using System;
+//This code was modified by Caleb Stickler
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
@@ -57,6 +59,7 @@ namespace Global_Management_UI.Areas.Identity.Pages.Account
                     protocol: Request.Scheme);
 
                 await _emailSender.SendEmailAsync(
+                    await _userManager.GetUserNameAsync(user),
                     Input.Email,
                     "Reset Password",
                     $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

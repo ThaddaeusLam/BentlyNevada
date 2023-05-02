@@ -1,4 +1,6 @@
-﻿@* Code created by Nathaniel McFadden*@
+@*
+    Code created by Nathaniel McFadden
+*@
 @model Device_UI.Models.Device
 
 @{
@@ -6,42 +8,98 @@
 }
 
 <h1>Details</h1>
+<style>
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tableStructure{
+        padding:5px;
+        border-style:none;
+    }
+</style>
 
+@{
+    IEnumerable<Device_UI.Models.DeviceHistory> Dhistory = ViewData["History"] as IEnumerable<Device_UI.Models.DeviceHistory>;
+}
 <div>
     <h4>Device</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Signature)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Signature)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Beginning)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Beginning)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.End)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.End)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
-</div>
-<div>
-    <form asp-action="Generate">
-        <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Generate Report" class="btn btn-outline-primary bg-green" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div class="flex-container gray-div">
+        <dl class="row gray-div" style="width:51%">
+            <dt class="col-sm-2 light-gray-text">
+                Signature:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.Signature)
+            </dd>
+            <dt class="col-sm-2 light-gray-text">
+                Beginning:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.Beginning)
+            </dd>
+            <dt class="col-sm-2 light-gray-text">
+                End:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.End)
+            </dd>
+            <dt class="col-sm-2 light-gray-text">
+                Status:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt class="col-sm-2 light-gray-text">
+                Port:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.Port)
+            </dd>
+            <dt class="col-sm-2 light-gray-text">
+                IP:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.IP)
+            </dd>
+            <dt class="col-sm-2 light-gray-text">
+                Creator:
+            </dt>
+            <dd class="col-sm-10 white-text">
+                @Html.DisplayFor(model => model.creator)
+            </dd>
+            <form asp-action="Generate" style="padding-right:5px">
+                <input type="hidden" asp-for="ID" />
+                <input type="submit" value="Details Report" class="btn btn-blue white-text" />
+            </form>
+            <form asp-action="DHReport">
+                <input type="hidden" asp-for="ID" />
+                <input type="submit" value="History Report" class="btn btn-blue white-text"  />
+                <button asp-action="Index" class="btn btn-primary white-text" alt="Back to Manage User List Button">Back to List</button>
+            </form>
+        </dl>
+        @if (Dhistory.Count() >= 1)
+        {
+            <div style=" width:49%; padding: 0px; align-self:flex-start" class="gray-div">
+                <h4 style="color:#B9BBB6">Recent History</h4>
+                <table>
+                    <tr class="light-gray-text tableStructure">
+                        <th class="tableStructure">Action</th>
+                        <th class="tableStructure">Date</th>
+                        <th class="tableStructure">User</th>
+                    </tr>
+                    @foreach (Device_UI.Models.DeviceHistory deviceH in Dhistory)
+                    {
+                            <tr class="white-text">
+                                <td class="tableStructure" >@deviceH.actionTaken</td>
+                                <td class="tableStructure">@deviceH.AlterationDate</td>
+                                <td class="tableStructure">@deviceH.UserWhoEdited</td>
+                            </tr>
+                    }
+                </table>
+            </div>
+        }
 
+    </div>
 </div>

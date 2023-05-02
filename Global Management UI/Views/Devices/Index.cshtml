@@ -1,43 +1,92 @@
-﻿@* Code created by Nathaniel McFadden*@
+@* Code created by Nathaniel McFadden*@
 @model Paging<Device_UI.Models.Device>
-    @{
+@{
     ViewData["Title"] = "Devices";
+}
+<style>
+    .warningColor {
+        color: #999205;
+        font-weight:bold;
     }
+    .dangerColor{
+        color: #D63B3B;
+        font-weight:bold;
+    }
+    .validColor{
+        color: #1BB33A;
+        font-weight: bold;
+    }
+  
+</style>
 
-    <h1>Devices</h1>
+<h1>Devices</h1>
+<table class="indexHead" style="padding-right: 100px;">
+    <thead>
+        <tr class="info-row">
+            <th>
+                @if (User.IsInRole("Sysadmin") || User.IsInRole("Admin"))
+                {
+                    <a asp-action="Create" class="btn btn-blue">Create Device </a>
+                }
+            </th>
+            <th>
+                @if (User.IsInRole("Sysadmin") || User.IsInRole("Admin"))
+                {
+                <form asp-action="Mass Generate">
+                        <button type="submit" class="btn btn-blue vertical-align-text" style=" position: absolute; right: 15%;" alt="Generate Mass Report Button">Export Mass Report</button>
+                </form>
+                }
+                else
+                {
+                <form asp-action="Mass Generate">
+                        <button type="submit" class="btn btn-blue vertical-align-text" alt="Export Mass Report Button">Export Mass Report</button>
+                </form>
+                }
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+            </th>
+        </tr>
 
-    @using (Html.BeginForm())
+    </thead>
+</table>
+
+@using (Html.BeginForm())
 {
-    <p>
-        Find by Signiture: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
+    <p style ="padding-top: 15px">
+        Find by Signature: @Html.TextBox("SearchString")
+        <form>
+            <button type="submit" class="btn btn-primary vertical-align-text" alt="Search Button">Search</button> |
+            <a asp-action = "index" class="btn btn-blue">Back to Full List</a>
+        </form>
+        
     </p>
+
+
 }
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Signature
-                </th>
-                <th>
-                    Beginning
-                </th>
-                <th>
-                    End
-                </th>
-                <th>
-                    Status
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Signature", "Index", new { sortOrder = "Sig" , currentFilter = ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("Beginning", "Index", new { sortOrder = "Beg", currentFilter = ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("End", "Index", new { sortOrder = "End", currentFilter = ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("Status", "Index", new { sortOrder = "Status", currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                <a asp-action="History" class="btn btn-blue">View History </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Signature)
@@ -45,38 +94,68 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Beginning)
                 </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.End)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Renew</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">View Report</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
 
+                @if (item.Status == "Close To Expiration")
+                {
+                    <td>
+                        <div class="warningColor">@Html.DisplayFor(modelItem => item.Status)</div>
+                    </td>
+                }
+                @if (item.Status == "Expired")
+                {
+                    <td>
+                        <div class="dangerColor">@Html.DisplayFor(modelItem => item.Status)</div>
+                    </td>
+                }
+                @if (item.Status == "Valid")
+                {
+                    <td>
+                        <div class="validColor">@Html.DisplayFor(modelItem => item.Status)</div>
+                    </td>
+                }
+                <td>
+                    @if(User.IsInRole("Sysadmin") || User.IsInRole("Admin"))
+                    {
+                        <a style="margin-right:"asp-action="Edit" asp-route-id="@item.ID">Renew </a> 
+                        <a>|</a>
+                    }
+                       
+                    <a asp-action = "Details" asp-route-id = "@item.ID" > View Report </a> 
+
+                    @if(User.IsInRole("Sysadmin") || User.IsInRole("Admin"))
+                    {
+                        <a>|</a>
+                        <a asp-action = "Delete" asp-route-id="@item.ID"> Delete </a>
+                    }
+                        
                 </td>
             </tr>
-}
-        </tbody>
-    </table>
-    @{
+        }
+    </tbody>
+</table>
+@{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-    }
+}
 
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-outline-primary bg-green @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-outline-primary bg-green @nextDisabled">
-        Next
-    </a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary bg-green @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary bg-green @nextDisabled">
+    Next
+</a>
+Page @(Model.TotalPages < Model.PageIndex ? 0 : Model.PageIndex) of @Model.TotalPages
+                
+@* Code edited by Thaddaeus Lam *@

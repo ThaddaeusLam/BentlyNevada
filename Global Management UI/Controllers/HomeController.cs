@@ -1,4 +1,6 @@
-﻿using Global_Management_UI.Models;
+//Scaffolded code - Caleb Stickler﻿
+
+using Global_Management_UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
