@@ -10,7 +10,6 @@
 <h1>List of Users</h1>
 
 <p>
-    @*<a asp-action="Create">Register New User</a>*@
     <form asp-action="Create">
         <button class="btn btn-blue" alt="Register New User Button">Register New User</button>
     </form>
@@ -19,15 +18,12 @@
     <thead>
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.Username)*@
                 @Html.ActionLink("Username", "Index", new { sortOrder = "Username" })
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Role)*@
                 @Html.ActionLink("Role", "Index", new { sortOrder = "Role" })
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.LastAccessed)*@
                 @Html.ActionLink("Last Accessed", "Index", new { sortOrder = "Date" })
             </th>
         </tr>
@@ -101,4 +97,4 @@
 </a>
 Page @(Model.TotalPages < Model.PageIndex ? 0 : Model.PageIndex) of @Model.TotalPages
 
-@* Code edited by Thaddaeus Lam *@
+@* Code edited by Caleb Stickler *@
